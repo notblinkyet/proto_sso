@@ -8,6 +8,7 @@ service Auth {
     rpc Register (RegisterRequest) returns (RegisterResponse);
     rpc Login (LoginRequest) returns (LoginResponse);
     rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
+    rpc Logout (LogoutRequest) returns (LogoutResponse);
 }
 
 message RegisterRequest {
@@ -30,9 +31,17 @@ message LoginResponse {
 }
 
 message IsAdminRequest {
-    string token = 1; // Auth token of the user to be checked.
+    int64 user_id = 1; // Auth token of the user to be checked.
 }
 
 message IsAdminResponse {
     bool is_admin = 1; // True if the user is an admin, false otherwise.
+}
+
+message LogoutRequest {
+    string token = 1;
+}
+
+message LogoutResponse{
+    bool success = 1;
 }
